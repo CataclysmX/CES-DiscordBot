@@ -1,5 +1,5 @@
 {
-  "name": "CES Discord",
+  "name": "cesdiscord",
   "version": "0.0.0",
   "main": "bot.js",
   "scripts": {
