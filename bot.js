@@ -52,19 +52,9 @@ client.on('message', msg => {
   }
 
   if (msg.content.startsWith(prefix + "say")) {
-    if (typeof args[0] !== 'undefined' || typeof args[0] !== undefined)
-    {
-      msg.delete();
-      Logs('ERROR !');
-      msg.channel.send("Ho...! A wild error has appeared");
-    }
-    else
-    {
-      msg.delete();
-      Logs();
-      msg.channel.send(args[0]);
-    }
-
+    msg.delete();
+    Logs();
+    msg.channel.send(args[0]);
   }
 
 
@@ -110,7 +100,6 @@ client.on('message', msg => {
         }
 
     }
-
     request(options, callback);
 
 
@@ -120,5 +109,5 @@ client.on('message', msg => {
 
 
 });
-//client.login('NDA0MzEyNDMxNzcxNTE2OTM4.DUUA2A.WkhEuO_5S_3hihh-fJlf1z3ZQRk');
+client.login('NDA0MzEyNDMxNzcxNTE2OTM4.DUUA2A.WkhEuO_5S_3hihh-fJlf1z3ZQRk');
 client.login(process.env.BOT_TOKEN);
