@@ -26,6 +26,11 @@ client.on('message', msg => {
     //msg.delete();
     return;
   }
+  
+  var authorized = process.env.BOT_AUTH;
+  var temp = new Array();
+  temp = authorized.split(",");
+  if ( '211986576689987584' in temp ) Logs("OK");
 
 
 
@@ -62,7 +67,7 @@ client.on('message', msg => {
   if (msg.content.startsWith(prefix + "test")) {
   msg.delete();
   Logs();
-  msg.channel.send(msg.author.id);
+  msg.channel.send(sender.id);
   }
 
 
