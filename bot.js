@@ -62,6 +62,7 @@ client.on('message', msg => {
   msg.delete();
   Logs();
   msg.channel.send(user.id);
+  }
 
 
   if (msg.content.startsWith(prefix + "correct")) {
