@@ -62,7 +62,7 @@ client.on('message', msg => {
   if (msg.content.startsWith(prefix + "test")) {
   msg.delete();
   Logs();
-  msg.channel.send(message.author.id);
+  msg.channel.send(client.user.tag);
   }
 
 
