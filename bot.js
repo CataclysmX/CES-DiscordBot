@@ -12,19 +12,20 @@ client.on('ready', () => {
   client.user.setGame(`My Prefix is ; :-)`);
 });
 
-var authorized = process.env.BOT_AUTH;
-var temp = new Array();
-temp = authorized.split(",");
-if ( temp.indexOf(sender.id) )
-{
-  Logs("OK");
-}
-else
-{
-  return;
-}
-
 client.on('message', msg => {
+  
+  var authorized = process.env.BOT_AUTH;
+  var temp = new Array();
+  temp = authorized.split(",");
+  if ( temp.indexOf(sender.id) )
+  {
+    Logs("OK");
+  }
+  else
+  {
+    return;
+  }
+  
   var sender = msg.author;
   const args = msg.content.slice(prefix.length).trim().split(/\"(.*?)\"/g);
   const command = args.shift().toLowerCase();
