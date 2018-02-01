@@ -35,10 +35,6 @@ client.on('message', msg => {
   {
     Logs("OK");
   }
-  else
-  {
-    break;
-  }
 
 
 
