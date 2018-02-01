@@ -40,6 +40,7 @@ client.on('message', msg => {
   else
   {
     Logs('\n'+temp);
+    return;
   }
 
 
