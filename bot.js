@@ -30,7 +30,15 @@ client.on('message', msg => {
   var authorized = process.env.BOT_AUTH;
   var temp = new Array();
   temp = authorized.split(",");
-  if ( '211986576689987584' in temp ) Logs("OK");
+  
+  if ( sender.id in temp )
+  {
+    Logs("OK");
+  }
+  else
+  {
+    break;
+  }
 
 
 
