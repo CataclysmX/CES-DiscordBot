@@ -33,7 +33,7 @@ client.on('message', msg => {
   var authorized = process.env.BOT_AUTH;
   var temp = new Array();
   temp = authorized.split(",");
-  if ( temp.indexOf(sender.id) )
+  if (temp.indexOf(sender.id) > -1)
   {
     Logs("\n OK");
   }
