@@ -9,6 +9,7 @@ let prefix = ";";
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setGame(`My Prefix is ; :-)`);
 });
 
 client.on('message', msg => {
@@ -61,7 +62,7 @@ client.on('message', msg => {
   if (msg.content.startsWith(prefix + "test")) {
   msg.delete();
   Logs();
-  msg.channel.send(user.id);
+  msg.channel.send(member.user.id);
   }
 
 
