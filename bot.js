@@ -39,7 +39,7 @@ client.on('message', msg => {
   }
   else
   {
-    return;
+    Logs(temp);
   }
 
 
