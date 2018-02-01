@@ -56,13 +56,12 @@ client.on('message', msg => {
     Logs();
     msg.channel.send(args[0]);
   }
-
-
-
-  /*if (msg.content.includes('LETTUCE')) {
-    msg.delete();
-    msg.author.send("don't use this word...")
-  }*/
+  
+  
+  if (msg.content.startsWith(prefix + "test")) {
+  msg.delete();
+  Logs();
+  msg.channel.send(user.id);
 
 
   if (msg.content.startsWith(prefix + "correct")) {
