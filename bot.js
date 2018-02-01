@@ -35,11 +35,11 @@ client.on('message', msg => {
   temp = authorized.split(",");
   if ( temp.indexOf(sender.id) )
   {
-    Logs("OK");
+    Logs("\n OK");
   }
   else
   {
-    Logs(temp);
+    Logs('\n'+temp);
   }
 
 
