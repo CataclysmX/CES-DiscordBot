@@ -26,6 +26,10 @@ client.on('message', msg => {
     //msg.delete();
     return;
   }
+  
+  
+  
+  
   var authorized = process.env.BOT_AUTH;
   var temp = new Array();
   temp = authorized.split(",");
