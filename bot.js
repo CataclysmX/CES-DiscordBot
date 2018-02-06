@@ -113,6 +113,7 @@ client.on('message', msg => {
   if (command === "noteadd") {
     console.log("Received");
     db.push("Note2/"+sender.id+"/name[]", args[0], false);
+    msg.reply('saved')
   }
 
   if (command === "notelist")
