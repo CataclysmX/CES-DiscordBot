@@ -1,7 +1,10 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 var request = require('request');
-
+var fs = require('fs');
+var JsonDB = require('node-json-db');
+var randomColor = require('randomcolor');
+var db = new JsonDB("Note", true, false);
 
 
 let prefix = ";";
@@ -9,12 +12,15 @@ let prefix = ";";
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame(`My Prefix is ; :-)`);
+  client.user.setActivity(`Use with ` + prefix);
 });
 
-client.on('message', msg => { 
+client.on('message', msg => {
+  if(msg.content.substring(0, 1) != prefix) return;
+  if(msg.channel.type == "dm") return;
+  color = randomColor({luminosity: 'bright', hue: 'blue'});
   var sender = msg.author;
-  const args = msg.content.slice(prefix.length).trim().split(/\"(.*?)\"/g);
+  const args = msg.content.slice(prefix.length).trim().split(/ \"(.*?)\"+/g);
   const command = args.shift().toLowerCase();
   var d = new Date();
   function Logs(opt)
@@ -26,63 +32,45 @@ client.on('message', msg => {
     //msg.delete();
     return;
   }
-  
-  
-  
-  
-  var authorized = process.env.BOT_AUTH;
-  var temp = new Array();
-  temp = authorized.split(",");
-  if (temp.indexOf(sender.id) > -1)
-  {
-    Logs("\n OK");
-  }
-  else
-  {
-    Logs('\n'+temp);
-    return;
-  }
 
-
-
-  if (msg.content.startsWith(prefix + "ping")) {
+  if (command === "ping") {
     Logs();
     msg.reply('Pong!');
   }
 
-  if (msg.content.startsWith(prefix + "help")) {
+  if (command === "help") {
     msg.delete();
     Logs();
     msg.reply('sorry but no help currently :confused:');
   }
 
-  if (msg.content.startsWith(prefix + "kebab")) {
+  if (command === "kebab") {
     msg.delete();
     Logs();
     msg.reply(':stuffed_flatbread: : et voila :smiley:');
   }
 
-  if (msg.content.startsWith(prefix + "okjs")) {
+  if (command === "okjs") {
     msg.delete();
     Logs();
     msg.channel.send("Ho non encore une querelle de couple... ");
   }
 
-  if (msg.content.startsWith(prefix + "say")) {
+  if (command === "say") {
     msg.delete();
     Logs();
     msg.channel.send(args[0]);
   }
-  
-  
-  if (msg.content.startsWith(prefix + "test")) {
-  msg.delete();
-  Logs();
-  msg.channel.send(sender.id);
+
+
+  if (command === "test") {
+    msg.delete();
+    Logs();
+    msg.channel.send(sender.id);
   }
 
 
-  if (msg.content.startsWith(prefix + "correct")) {
+  if (command === "correct") {
 
     var dataString = args[0];
 
@@ -122,9 +110,53 @@ client.on('message', msg => {
 
   }
 
+  if (command === "noteadd") {
+    console.log("Received");
+    db.push("Note2/"+sender.id+"/name[]", args[0], false);
+  }
 
+  if (command === "notelist")
+  {
+    console.log("Sent");
+    username = "<@"+sender.id+">";
+    if(typeof args[0] === 'undefined')
+    {
+      try
+      {
+        var data = db.getData("Note2/"+sender.id+"/name");
+      }
+      catch(error)
+      {
+        console.error('nothing for : '+sender);
+        msg.channel.send("Error encounter :confused: \nsorry");
+        return;
+      }
+      const embed = new Discord.RichEmbed()
+        .setColor(color)
+        .setDescription(data)
 
+      msg.channel.send({ embed });
+    }
+    else
+    {
+      req = args[0].replace("<@","").replace(">","").replace(" ","");
+      try
+      {
+        var data = db.getData("Note2/"+req+"/name");
+      }
+      catch(error)
+      {
+        console.log('nothing for : '+sender);
+        msg.channel.send('nothing for : ' + sender);
+        return;
+      }
+      const embed = new Discord.RichEmbed()
+        .setColor(color)
+        .setDescription(data)
 
+      msg.channel.send({ embed });
+    }
+  }
 });
 client.login('NDA0MzEyNDMxNzcxNTE2OTM4.DUUA2A.WkhEuO_5S_3hihh-fJlf1z3ZQRk');
 client.login(process.env.BOT_TOKEN);
