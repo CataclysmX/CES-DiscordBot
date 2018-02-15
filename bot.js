@@ -118,6 +118,7 @@ client.on('message', msg => {
   
   if (command === "carglass")
   {
+    Logs()
       var time = 0;
       if(typeof args[0] === 'undefined')
       {
