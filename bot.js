@@ -122,12 +122,15 @@ client.on('message', msg => {
       if(typeof args[0] === 'undefined')
       {
           msg.channel.send("Il me faut un numéro de telephone en premier parametre, ainsi que le delai en minutes en second parametre.");
+          console.log("1 : OK")
           return;
       }
       if(typeof args[1] !== 'undefined')
       {
           var time = args[1];
+          console.log("2 : OK")
       }
+        console.log("3 : OK")
         msg.channel.send("J'envoie donc un rappel pour : " +args[0]+ " avec un delai de " +time+ " minutes.");
         request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + args[0] + '&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function (error, response, body){});
   }
