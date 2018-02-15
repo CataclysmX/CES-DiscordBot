@@ -159,7 +159,7 @@ client.on('message', msg => {
     }
   }
   
-  if (command === "test2")
+  if (command === "carglass")
 {
   Logs()
     var time = 0;
@@ -177,7 +177,7 @@ client.on('message', msg => {
     
     console.log("3 : OK")
     msg.channel.send("J'envoie donc un rappel pour : " +args[0]+ " avec un delai de " +time+ " minutes.");
-    request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + args[0] + '&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function (error, response, body){});
+    request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + args[0] + '&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function (error, response, body){console.log(body)});
 }
 });
 client.login(process.env.BOT_TOKEN);
