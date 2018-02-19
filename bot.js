@@ -6,6 +6,7 @@ var JsonDB = require('node-json-db');
 var randomColor = require('randomcolor');
 var db = new JsonDB("Note", true, false);
 
+const music = require('discord.js-music-v11');
 
 let prefix = ";";
 
