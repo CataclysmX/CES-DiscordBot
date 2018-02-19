@@ -16,7 +16,7 @@ client.on('ready', () => {
   client.user.setActivity(`Use with ` + prefix);
 });
 
-music(client, {prefix: ';', clearInvoker: true});
+music(client, {prefix: ';', clearInvoker: true, volume: 2});
 
 client.on('message', msg => {
   if(msg.content.substring(0, 1) != prefix) return;
