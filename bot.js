@@ -16,6 +16,8 @@ client.on('ready', () => {
   client.user.setActivity(`Use with ` + prefix);
 });
 
+music(client, {prefix: '-'});
+
 client.on('message', msg => {
   if(msg.content.substring(0, 1) != prefix) return;
   if(msg.channel.type == "dm") return;
@@ -63,11 +65,14 @@ client.on('message', msg => {
     msg.channel.send(args[0]);
   }
 
-
   if (command === "test") {
     msg.delete();
     Logs();
     msg.channel.send(sender.id);
+  }
+  
+  if (command === "test2") {
+    
   }
 
 
