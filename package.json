@@ -7,6 +7,8 @@
     "discord.js": "^11.3.0",
     "node-json-db": "^0.7.3",
     "randomcolor": "^0.5.3",
+    "ffmpeg-binaries": "^3.2.2-3",
+    "node-opus": "^0.2.7",
     "request": "^2.83.0"
   },
   "devDependencies": {},
