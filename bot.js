@@ -202,7 +202,7 @@ client.on('message', msg => {
     var howmanytimes = 1;
     if(typeof args[0] === 'undefined')
     {
-        msg.channel.send("Usage :\n++carglass <numero de tel> (possible d'indiquer 'carglass') <dans combien de temps> <combien de fois> (possible d'indiquer 'infini', necessite le second parametre)\n");
+        msg.channel.send("Usage :\n"+prefix+"carglass <numero de tel> (possible d'indiquer 'carglass') <dans combien de temps> <combien de fois> (possible d'indiquer 'infini', necessite le second parametre)\n");
         return;
     }
         if (args[0] === "carglass"){
