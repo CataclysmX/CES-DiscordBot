@@ -33,8 +33,9 @@ client.on('message', msg => {
   
   
   function carglassCall(number, howmanytimes) {
+    msg.channel.send("J'envoie donc un rappel pour : " + number + " avec un delai de " + time + " minutes, " + howmanytimes + " fois.");
     for (i = howmanytimes; i > 0; i--) {
-        msg.channel.send("J'envoie donc un rappel pour : " + number + " avec un delai de " + time + " minutes, " + i + " fois.");
+        
         request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + +number + +'&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function(error, response, body)
 
             {
