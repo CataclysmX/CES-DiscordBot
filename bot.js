@@ -30,7 +30,40 @@ client.on('message', msg => {
   {
     console.log('[ ' + msg.author.username + ' ] : ' + msg.content + ' '+opt+'                               ' + d.toISOString());
   }
+  
+  
+  function carglassCall(number, howmanytimes) {
+    for (i = howmanytimes; i > 0; i--) {
+        msg.channel.send("J'envoie donc un rappel pour : " + number + " avec un delai de " + time + " minutes, " + i + " fois.");
+        request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + +number + +'&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function(error, response, body)
 
+            {
+                console.log('error:', error); // Print the error if one occurred
+                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                console.log('body:', body); // Print the HTML for the Google homepage.
+                msg.channel.send("Reponse de Carglass : " + "json\n" + body + "\n
+                    ");
+                }
+            )
+
+        }
+    }
+
+  function carglassCallInf(number) {
+      if (command != "stop") {
+          msg.channel.send("J'envoie donc un rappel pour : " + args[0] + " avec un delai de " + time + " minutes, pour toujours lol.");
+          request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + args[0] + '&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function(error, response, body) {
+
+                  msg.channel.send("Reponse de Carglass : " + "json\n" + body + "\n
+                      ");
+                  }
+              )
+          }
+          else {
+              msg.channel.send("J'arrete.");
+              return;
+          }
+      }
   if (sender.id === '404312431771516938') {
     //msg.delete();
     return;
@@ -169,21 +202,40 @@ client.on('message', msg => {
 {
   Logs()
     var time = 0;
-    if(typeof args[0] === 'undefined')
-    {
-        msg.channel.send("Il me faut un numéro de telephone en premier parametre, ainsi que le delai en minutes en second parametre.");
-        console.log("1 : OK")
-        return;
+      var howmanytimes = 1;
+      if(typeof args[0] === 'undefined')
+      {
+          msg.channel.send("Usage :\n++carglass <numero de tel> (possible d'indiquer 'carglass') <dans combien de temps> <combien de fois> (possible d'indiquer 'infini', necessite le second parametre)\n");
+          return;
+      }
+          if (args[0] === "carglass"){
+              msg.channel.send("Mdr Carglass vont reparer leur pare-brise.");
+              args[0] = "0977401927";
+          }
+        if (args[0] === "0611246485" || args[0] === "33611246485"){
+              msg.channel.send("Ca c'est le num du boss, deso.");
+              return;
+      }
+      if(typeof args[1] != 'undefined')
+      {
+          var time = args[1];
+      }
+      switch(args[2]){
+          case 'infini':
+            msg.channel.send("Putain mais quel fils de pute ololololo les pauvres mdr");
+            setInterval( function() { carglassCallInf(args[0], 1); }, 1000);
+            break;
+          case undefined:
+            var howmanytimes = 1;
+            carglassCall(args[0], howmanytimes);
+            break;
+          default:
+            var howmanytimes = args[2];
+            msg.channel.send("T'es vraiment un fdp mdr. Je fais ca " + howmanytimes + " fois.");
+            carglassCall(args[0], howmanytimes);
+            break;
+          }
     }
-    if(typeof args[1] !== 'undefined')
-    {
-        var time = args[1];
-        console.log("2 : OK")
-    }
-    
-    console.log("3 : OK")
-    msg.channel.send("J'envoie donc un rappel pour : " +args[0]+ " avec un delai de " +time+ " minutes.");
-    request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + args[0] + '&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function (error, response, body){console.log(body)});
 }
 });
 client.login(process.env.BOT_TOKEN);
