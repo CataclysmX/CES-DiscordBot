@@ -41,8 +41,7 @@ client.on('message', msg => {
                 console.log('error:', error); // Print the error if one occurred
                 console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
                 console.log('body:', body); // Print the HTML for the Google homepage.
-                msg.channel.send("Reponse de Carglass : " + "json\n" + body + "\n
-                    ");
+                msg.channel.send("Reponse de Carglass : " + "json\n" + body + "\n");
                 }
             )
 
@@ -54,8 +53,7 @@ client.on('message', msg => {
           msg.channel.send("J'envoie donc un rappel pour : " + args[0] + " avec un delai de " + time + " minutes, pour toujours lol.");
           request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + args[0] + '&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function(error, response, body) {
 
-                  msg.channel.send("Reponse de Carglass : " + "json\n" + body + "\n
-                      ");
+                  msg.channel.send("Reponse de Carglass : " + "json\n" + body + "\n");
                   }
               )
           }
