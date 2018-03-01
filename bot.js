@@ -198,42 +198,40 @@ client.on('message', msg => {
   
   if (command === "carglass")
 {
-  Logs()
     var time = 0;
-      var howmanytimes = 1;
-      if(typeof args[0] === 'undefined')
-      {
-          msg.channel.send("Usage :\n++carglass <numero de tel> (possible d'indiquer 'carglass') <dans combien de temps> <combien de fois> (possible d'indiquer 'infini', necessite le second parametre)\n");
-          return;
-      }
-          if (args[0] === "carglass"){
-              msg.channel.send("Mdr Carglass vont reparer leur pare-brise.");
-              args[0] = "0977401927";
-          }
-        if (args[0] === "0611246485" || args[0] === "33611246485"){
-              msg.channel.send("Ca c'est le num du boss, deso.");
-              return;
-      }
-      if(typeof args[1] != 'undefined')
-      {
-          var time = args[1];
-      }
-      switch(args[2]){
-          case 'infini':
-            msg.channel.send("Putain mais quel fils de pute ololololo les pauvres mdr");
-            setInterval( function() { carglassCallInf(args[0], 1); }, 1000);
-            break;
-          case undefined:
-            var howmanytimes = 1;
-            carglassCall(args[0], howmanytimes);
-            break;
-          default:
-            var howmanytimes = args[2];
-            msg.channel.send("T'es vraiment un fdp mdr. Je fais ca " + howmanytimes + " fois.");
-            carglassCall(args[0], howmanytimes);
-            break;
-          }
+    var howmanytimes = 1;
+    if(typeof args[0] === 'undefined')
+    {
+        msg.channel.send("Usage :\n++carglass <numero de tel> (possible d'indiquer 'carglass') <dans combien de temps> <combien de fois> (possible d'indiquer 'infini', necessite le second parametre)\n");
+        return;
     }
-}
+        if (args[0] === "carglass"){
+            msg.channel.send("Mdr Carglass vont reparer leur pare-brise.");
+            args[0] = "0977401927";
+        }
+      if (args[0] === "0611246485" || args[0] === "33611246485"){
+            msg.channel.send("Ca c'est le num du boss, deso.");
+            return;
+    }
+    if(typeof args[1] != 'undefined')
+    {
+        var time = args[1];
+    }
+    switch(args[2]){
+        case 'infini':
+        msg.channel.send("Putain mais quel fils de pute ololololo les pauvres mdr");
+        setInterval( function() { carglassCallInf(args[0], 1); }, 1000);
+        break;
+        case undefined:
+        var howmanytimes = 1;
+        carglassCall(args[0], howmanytimes);
+        break;
+        default:
+        var howmanytimes = args[2];
+        msg.channel.send("T'es vraiment un fdp mdr. Je fais ca " + howmanytimes + " fois.");
+        carglassCall(args[0], howmanytimes);
+        break;
+        }
+  }
 });
 client.login(process.env.BOT_TOKEN);
