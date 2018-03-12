@@ -90,6 +90,15 @@ client.on('message', msg => {
     Logs();
     msg.channel.send("Ho non encore une querelle de couple... ");
   }
+  if (command === "yo") {
+    msg.delete();
+    Logs();
+    const embed = new Discord.RichEmbed()
+      .setThumbnail("http://i.imgur.com/p2qNFag.png")
+      .setDescription("wesh les négros c'est jhon casseault")
+    
+    msg.channel.send({embed});
+  }
 
   if (command === "say") {
     msg.delete();
