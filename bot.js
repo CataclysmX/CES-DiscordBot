@@ -92,7 +92,6 @@ client.on('message', msg => {
   }
   if (command === "yo") {
     msg.delete();
-    Logs();
     const embed = new Discord.RichEmbed()
       .setThumbnail("https://media.giphy.com/media/l0HlMr2G3EKFgpUY0/giphy.gif")
       .setDescription("wesh les négros c'est jhon casseault")
