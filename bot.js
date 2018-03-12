@@ -94,7 +94,8 @@ client.on('message', msg => {
     msg.delete();
     const embed = new Discord.RichEmbed()
       .setThumbnail("https://media.giphy.com/media/l0HlMr2G3EKFgpUY0/giphy.gif")
-      .setDescription("wesh les négros c'est jhon casseault")
+      .setTitle("wesh les négros c'est jhon casseault")
+      .setColor(color)
     
     msg.channel.send({embed});
   }
