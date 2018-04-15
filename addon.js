@@ -131,7 +131,7 @@ module.exports = function (client, options) {
 				searchstring = 'gvsearch1:' + suffix;
 			}
 
-			YoutubeDL.getInfo(searchstring, ['-q', '--no-warnings', '--force-ipv4'], (err, info) => {
+			YoutubeDL.getInfo(searchstring, ['-q', '--no-warnings', '--force-ipv4', '--geo-bypass-country FR'], (err, info) => {
 				// Verify the info.
 				if (err || info.format_id === undefined || info.format_id.startsWith('0')) {
 					return response.edit(wrap('Invalid video!'));
