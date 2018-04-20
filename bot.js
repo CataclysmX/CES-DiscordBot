@@ -16,53 +16,60 @@ client.on('ready', () => {
   client.user.setActivity(`Use with ` + prefix);
 });
 
-music(client, {prefix: ';', clearInvoker: true, volume: 2});
+music(client, {
+  prefix: ';',
+  clearInvoker: true,
+  volume: 2
+});
 
 client.on('message', msg => {
-  if(msg.content.substring(0, 1) != prefix) return;
-  if(msg.channel.type == "dm") return;
-  color = randomColor({luminosity: 'bright', hue: 'blue'});
+  if (msg.content.substring(0, 1) != prefix) return;
+  if (msg.channel.type == "dm") return;
+  color = randomColor({
+    luminosity: 'bright',
+    hue: 'blue'
+  });
   var sender = msg.author;
-  const args = msg.content.slice(prefix.length).trim().split(/ \"(.*?)\"+/g);
-  const command = args.shift().toLowerCase();
+  const command = msg.substring(prefix.length).split(/[ \n]/)[0].toLowerCase().trim();
+  const args = msg.substring(prefix.length + command.length).trim();
+  /*const args = msg.content.slice(prefix.length).trim().split(/ \"(.*?)\"+/g);
+  const command = args.shift().toLowerCase();*/
   var d = new Date();
-  function Logs(opt)
-  {
-    console.log('[ ' + msg.author.username + ' ] : ' + msg.content + ' '+opt+'                               ' + d.toISOString());
+
+  function Logs(opt) {
+    console.log('[ ' + msg.author.username + ' ] : ' + msg.content + ' ' + opt + '                               ' + d.toISOString());
   }
-  
-  
+
+
   function carglassCall(number, howmanytimes) {
     msg.channel.send("J'envoie donc un rappel pour : " + number + " avec un delai de " + time + " minutes, " + howmanytimes + " fois.");
     for (i = howmanytimes; i > 0; i--) {
-        
-        request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + +number + +'&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function(error, response, body)
 
-            {
-                console.log('error:', error); // Print the error if one occurred
-                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                console.log('body:', body); // Print the HTML for the Google homepage.
-                msg.channel.send("Reponse de Carglass : " + "json\n" + body + "\n");
-                }
-            )
+      request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + +number + +'&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function(error, response, body)
 
+        {
+          console.log('error:', error); // Print the error if one occurred
+          console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+          console.log('body:', body); // Print the HTML for the Google homepage.
+          msg.channel.send("Reponse de Carglass : " + "json\n" + body + "\n");
         }
+      )
+
     }
+  }
 
   function carglassCallInf(number) {
-      if (command != "stop") {
-          msg.channel.send("J'envoie donc un rappel pour : " + args[0] + " avec un delai de " + time + " minutes, pour toujours lol.");
-          request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + args[0] + '&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function(error, response, body) {
+    if (command != "stop") {
+      msg.channel.send("J'envoie donc un rappel pour : " + args[0] + " avec un delai de " + time + " minutes, pour toujours lol.");
+      request('https://www.carglass.fr/webservice/contact?name=Alain&e164=' + args[0] + '&delay=' + time + '&id_tracking=7926&csrf_token=7P2YcTAAJnIQR0sGr7thef-OqoxJ1FEP-uU3s7RmWVM', function(error, response, body) {
 
-                  msg.channel.send("Reponse de Carglass : " + "json\n" + body + "\n");
-                  }
-              )
-          }
-          else {
-              msg.channel.send("J'arrete.");
-              return;
-          }
-      }
+        msg.channel.send("Reponse de Carglass : " + "json\n" + body + "\n");
+      })
+    } else {
+      msg.channel.send("J'arrete.");
+      return;
+    }
+  }
   if (sender.id === '404312431771516938') {
     //msg.delete();
     return;
@@ -96,8 +103,10 @@ client.on('message', msg => {
       .setThumbnail("https://media.giphy.com/media/l0HlMr2G3EKFgpUY0/giphy.gif")
       .setTitle("wesh les négros c'est jhon casseault")
       .setColor(color)
-    
-    msg.channel.send({embed});
+
+    msg.channel.send({
+      embed
+    });
   }
 
   if (command === "say") {
@@ -111,9 +120,9 @@ client.on('message', msg => {
     Logs();
     msg.channel.send(sender.id);
   }
-  
+
   if (command === "test2") {
-    
+
   }
 
 
@@ -122,34 +131,34 @@ client.on('message', msg => {
     var dataString = args[0];
 
     var headers = {
-        'Username': 'OnlineSpellerWS',
-        'Host': 'orthographe.reverso.net',
-        'Accept': 'application/json, text/javascript, /; q=0.01',
-        'Accept-Encoding': 'gzip, deflate',
-        'Cache-Control': 'no-cache',
-        'Origin': 'http://www.reverso.net/',
-        'Created': '01/01/0001 00:00:00'
+      'Username': 'OnlineSpellerWS',
+      'Host': 'orthographe.reverso.net',
+      'Accept': 'application/json, text/javascript, /; q=0.01',
+      'Accept-Encoding': 'gzip, deflate',
+      'Cache-Control': 'no-cache',
+      'Origin': 'http://www.reverso.net/',
+      'Created': '01/01/0001 00:00:00'
     };
 
 
 
     var options = {
-        url: 'http://orthographe.reverso.net/RISpellerWS/RestSpeller.svc/v1/CheckSpellingAsXml/language=fra?outputFormat=json&doReplacements=true&interfLang=fr&dictionary=both&spellOrigin=interactive&includeSpellCheckUnits=true&includeExtraInfo=true&isStandaloneSpeller=true',
-        method: 'POST',
-        headers: headers,
-        body: dataString
+      url: 'http://orthographe.reverso.net/RISpellerWS/RestSpeller.svc/v1/CheckSpellingAsXml/language=fra?outputFormat=json&doReplacements=true&interfLang=fr&dictionary=both&spellOrigin=interactive&includeSpellCheckUnits=true&includeExtraInfo=true&isStandaloneSpeller=true',
+      method: 'POST',
+      headers: headers,
+      body: dataString
     };
 
     function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            var t = JSON.parse(body);
-            var body2 = t['AutoCorrectedText'];
-            //console.log(body);
-            msg.delete();
-            Logs(args[0]);
-            msg.reply(body2);
-            //msg.reply(args[0]);
-        }
+      if (!error && response.statusCode == 200) {
+        var t = JSON.parse(body);
+        var body2 = t['AutoCorrectedText'];
+        //console.log(body);
+        msg.delete();
+        Logs(args[0]);
+        msg.reply(body2);
+        //msg.reply(args[0]);
+      }
 
     }
     request(options, callback);
@@ -159,23 +168,18 @@ client.on('message', msg => {
 
   if (command === "noteadd") {
     console.log("Received");
-    db.push("Note2/"+sender.id+"/name[]", args[0], false);
+    db.push("Note2/" + sender.id + "/name[]", args[0], false);
     msg.reply('saved')
   }
 
-  if (command === "notelist")
-  {
+  if (command === "notelist") {
     console.log("Sent");
-    username = "<@"+sender.id+">";
-    if(typeof args[0] === 'undefined')
-    {
-      try
-      {
-        var data = db.getData("Note2/"+sender.id+"/name");
-      }
-      catch(error)
-      {
-        console.error('nothing for : '+sender);
+    username = "<@" + sender.id + ">";
+    if (typeof args[0] === 'undefined') {
+      try {
+        var data = db.getData("Note2/" + sender.id + "/name");
+      } catch (error) {
+        console.error('nothing for : ' + sender);
         msg.channel.send("Error encounter :confused: \nsorry");
         return;
       }
@@ -183,18 +187,15 @@ client.on('message', msg => {
         .setColor(color)
         .setDescription(data)
 
-      msg.channel.send({ embed });
-    }
-    else
-    {
-      req = args[0].replace("<@","").replace(">","").replace(" ","");
-      try
-      {
-        var data = db.getData("Note2/"+req+"/name");
-      }
-      catch(error)
-      {
-        console.log('nothing for : '+sender);
+      msg.channel.send({
+        embed
+      });
+    } else {
+      req = args[0].replace("<@", "").replace(">", "").replace(" ", "");
+      try {
+        var data = db.getData("Note2/" + req + "/name");
+      } catch (error) {
+        console.log('nothing for : ' + sender);
         msg.channel.send('nothing for : ' + sender);
         return;
       }
@@ -202,46 +203,84 @@ client.on('message', msg => {
         .setColor(color)
         .setDescription(data)
 
-      msg.channel.send({ embed });
+      msg.channel.send({
+        embed
+      });
     }
   }
-  
-  if (command === "carglass")
-{
+
+  if (command === "carglass") {
     var time = 0;
     var howmanytimes = 1;
-    if(typeof args[0] === 'undefined')
-    {
-        msg.channel.send("Usage :\n"+prefix+"carglass <numero de tel> (possible d'indiquer 'carglass') <dans combien de temps> <combien de fois> (possible d'indiquer 'infini', necessite le second parametre)\n");
-        return;
+    if (typeof args[0] === 'undefined') {
+      msg.channel.send("Usage :\n" + prefix + "carglass <numero de tel> (possible d'indiquer 'carglass') <dans combien de temps> <combien de fois> (possible d'indiquer 'infini', necessite le second parametre)\n");
+      return;
     }
-        if (args[0] === "carglass"){
-            msg.channel.send("Mdr Carglass vont reparer leur pare-brise.");
-            args[0] = "0977401927";
-        }
-      if (args[0] === "0611246485" || args[0] === "33611246485"){
-            msg.channel.send("Ca c'est le num du boss, deso.");
-            return;
+    if (args[0] === "carglass") {
+      msg.channel.send("Mdr Carglass vont reparer leur pare-brise.");
+      args[0] = "0977401927";
     }
-    if(typeof args[1] != 'undefined')
-    {
-        var time = args[1];
+    if (args[0] === "0611246485" || args[0] === "33611246485") {
+      msg.channel.send("Ca c'est le num du boss, deso.");
+      return;
     }
-    switch(args[2]){
-        case 'infini':
+    if (typeof args[1] != 'undefined') {
+      var time = args[1];
+    }
+    switch (args[2]) {
+      case 'infini':
         msg.channel.send("Putain mais quel fils de pute ololololo les pauvres mdr");
-        setInterval( function() { carglassCallInf(args[0], 1); }, 1000);
+        setInterval(function() {
+          carglassCallInf(args[0], 1);
+        }, 1000);
         break;
-        case undefined:
+      case undefined:
         var howmanytimes = 1;
         carglassCall(args[0], howmanytimes);
         break;
-        default:
+      default:
         var howmanytimes = args[2];
         msg.channel.send("T'es vraiment un fdp mdr. Je fais ca " + howmanytimes + " fois.");
         carglassCall(args[0], howmanytimes);
         break;
-        }
+    }
+  }
+
+
+  if (command === "immagic")
+  {
+    filter = ["smile","smile_2","hot","old","young","female_2","female","male","pan","hitman","hollywood","heisenberg","impression","lion","goatee","hipster","bangs","glasses","wave","makeup"]
+      console.log(args.split(/[ ]/)[0])
+    arg1 = args.split(/[ ]/)[0]
+      console.log(filter.includes(arg1))
+
+    msg.delete()
+
+    if(filter.includes(arg1) == false)
+    {
+      msg.channel.send("**__ERROR__ :**\nWrong filter. Retry with : \n\n" + filter.join(', ').toString()+`\n\n**e.g. **: ${PREFIX + command} smile` )
+      return;
+    }
+
+      var Attachment = await (msg.attachments).array();
+      var nURL = Attachment[0].url
+      console.log(nURL+"\n");
+
+
+    try
+    {
+      let { body } = await superagent.get(nURL)
+      let image = await faceapp.process(body, arg1)
+      msg.channel.send({
+          file: image // Or replace with FileOptions object
+      });
+    }
+    catch (e)
+    {
+      console.log(e)
+      msg.channel.send("**ERROR :** \nNo faces found.")
+      return
+    }
   }
 });
 client.login(process.env.BOT_TOKEN);
