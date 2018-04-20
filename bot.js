@@ -32,9 +32,18 @@ client.on('message', msg => {
     luminosity: 'bright',
     hue: 'blue'
   });
+  
+  
+  
   var sender = msg.author;
   const command = msg.substring(prefix.length).split(/[ \n]/)[0].toLowerCase().trim();
   const args = msg.substring(prefix.length + command.length).trim();
+  
+  switch (command) {
+      case 'immagic':
+        return immagic(msg, suffix);
+    }
+  
   /*const args = msg.content.slice(prefix.length).trim().split(/ \"(.*?)\"+/g);
   const command = args.shift().toLowerCase();*/
   var d = new Date();
@@ -250,7 +259,7 @@ client.on('message', msg => {
   }
 
 
-  if (command === "immagic")
+  async function test1(msg, suffix)
   {
     filter = ["smile","smile_2","hot","old","young","female_2","female","male","pan","hitman","hollywood","heisenberg","impression","lion","goatee","hipster","bangs","glasses","wave","makeup"]
       console.log(args.split(/[ ]/)[0])
