@@ -36,8 +36,8 @@ client.on('message', msg => {
   
   
   var sender = msg.author;
-  const command = msg.substring(prefix.length).split(/[ \n]/)[0].toLowerCase().trim();
-  const args = msg.substring(prefix.length + command.length).trim();
+  const command = msg.content.trim().substring(prefix.length).split(/[ \n]/)[0].toLowerCase().trim();
+  const args = msg.content.trim().substring(prefix.length + command.length).trim();
   
   switch (command) {
       case 'immagic':
