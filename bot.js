@@ -259,7 +259,7 @@ client.on('message', msg => {
   }
 
 
-  async function test1(msg, suffix)
+  async function immagic(msg, suffix)
   {
     filter = ["smile","smile_2","hot","old","young","female_2","female","male","pan","hitman","hollywood","heisenberg","impression","lion","goatee","hipster","bangs","glasses","wave","makeup"]
       console.log(args.split(/[ ]/)[0])
