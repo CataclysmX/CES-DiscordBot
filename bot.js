@@ -6,6 +6,9 @@ var JsonDB = require('node-json-db');
 var randomColor = require('randomcolor');
 var db = new JsonDB("Note", true, false);
 
+
+const faceapp = require('faceapp');
+const superagent = require('superagent');
 const music = require('discord.js-music-v11');
 
 let prefix = ";";
