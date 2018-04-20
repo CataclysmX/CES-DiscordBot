@@ -41,7 +41,7 @@ client.on('message', msg => {
   
   switch (command) {
       case 'immagic':
-        return immagic(msg, suffix);
+        return immagic(msg, args);
     }
   
   /*const args = msg.content.slice(prefix.length).trim().split(/ \"(.*?)\"+/g);
@@ -259,7 +259,7 @@ client.on('message', msg => {
   }
 
 
-  async function immagic(msg, suffix)
+  async function immagic(msg, args)
   {
     filter = ["smile","smile_2","hot","old","young","female_2","female","male","pan","hitman","hollywood","heisenberg","impression","lion","goatee","hipster","bangs","glasses","wave","makeup"]
       console.log(args.split(/[ ]/)[0])
