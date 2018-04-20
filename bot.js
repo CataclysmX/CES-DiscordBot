@@ -270,7 +270,7 @@ client.on('message', msg => {
 
     if(filter.includes(arg1) == false)
     {
-      msg.channel.send("**__ERROR__ :**\nWrong filter. Retry with : \n\n" + filter.join(', ').toString()+`\n\n**e.g. **: ${PREFIX + command} smile` )
+      msg.channel.send("**__ERROR__ :**\nWrong filter. Retry with : \n\n" + filter.join(', ').toString()+`\n\n**e.g. **: ${prefix + command} smile` )
       return;
     }
 
