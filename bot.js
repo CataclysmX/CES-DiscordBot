@@ -261,7 +261,7 @@ client.on('message', msg => {
 
   async function immagic(msg, args)
   {
-    filter = ["smile","smile_2","hot","old","young","female_2","female","male","pan","hitman","hollywood","heisenberg","impression","lion","goatee","hipster","bangs","glasses","wave","makeup"]
+    filter = ["fun_glasses","mustache","mustache_free","smile","smile_2","hot","old","young","female_2","female","male","pan","hitman","hollywood","heisenberg","impression","lion","goatee","hipster","bangs","glasses","wave","makeup"]
       console.log(args.split(/[ ]/)[0])
     arg1 = args.split(/[ ]/)[0]
       console.log(filter.includes(arg1))
