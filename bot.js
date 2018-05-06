@@ -42,6 +42,8 @@ client.on('message', msg => {
   switch (command) {
       case 'immagic':
         return immagic(msg, args);
+      case 'stream':
+        return stream(msg, args);
     }
   
   /*const args = msg.content.slice(prefix.length).trim().split(/ \"(.*?)\"+/g);
@@ -294,5 +296,72 @@ client.on('message', msg => {
       return
     }
   }
+  function IMGCheck(img, str, i)
+    {
+      request.get(img,function (error, response, body)
+      {
+        //console.log(response.headers["content-type"])
+        if(response.headers["content-type"] == "text/html")
+        {
+          embed = {
+            "title": str.results[i].titleNoFormatting + ' ('+str.results[i].visibleUrl+')',
+            "url": str.results[i].unescapedUrl.replace("rutube.ru/video","rutube.ru/embed"),
+            "color": 16717848,
+            "image": {
+                "url": img
+              }
+            };
+          msg.channel.send({ embed });
+          //return 16717848
+        }
+        else {
+          embed = {
+            "title": str.results[i].titleNoFormatting + ' ('+str.results[i].visibleUrl+')',
+            "url": str.results[i].unescapedUrl.replace("rutube.ru/video","rutube.ru/embed"),
+            "color": 2161787,
+            "image": {
+                "url": img
+              }
+            };
+          msg.channel.send({ embed });
+        }
+      })
+    }
+
+    async function stream(msg, suffix) {
+      if(suffix.length < 2)
+      {return}
+      console.log("ok")
+      var urlFinal = suffix.replace(" ","%20")
+      request('https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=5&num=5&hl=fr&prettyPrint=true&source=gcsc&gss=.com&sig=f9d319213db9a87438e3102cff9a2ec9&cx=009653229415439608404:1m_ttrdetu8&q='+urlFinal+'&cse_tok=ABPF6Hha94XrtAEY088JhVEcmfw3yTuagQ:1525555164946&googlehost=www.google.com', function (error, response, body)
+      {
+        msg.channel.send('``` Red Banner is bad link, "no image Available" is for no streaming ```')
+        var str = JSON.parse(body);
+        //JSON.parse(str)
+        //console.log(str)
+        var i = 0;
+        var y = 0;
+        var color = 0000000
+        if(str.results.length < 1)
+        {
+          msg.channel.send('```Nothing found```');
+        }
+        else {
+          for(i = 0; i != str.results.length; i++)
+          {
+            try
+            {
+              var img = str.results[i].richSnippet.cseImage.src
+            }
+            catch (e)
+            {
+              var img = "https://vignette.wikia.nocookie.net/yakusokunoneverland/images/3/3c/NoImageAvailable.png"
+            }
+              IMGCheck(img, str, i)
+          }
+        }
+
+      })
+    }
 });
 client.login(process.env.BOT_TOKEN);
