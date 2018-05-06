@@ -126,7 +126,7 @@ client.on('message', msg => {
   if (command === "say") {
     msg.delete();
     Logs();
-    msg.channel.send(args[0]);
+    msg.channel.send(suffix);
   }
 
   if (command === "test") {
