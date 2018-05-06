@@ -328,11 +328,11 @@ client.on('message', msg => {
       })
     }
 
-    async function stream(msg, suffix) {
-      if(suffix.length < 2)
+    async function stream(msg, args) {
+      if(args.length < 2)
       {return}
       console.log("ok")
-      var urlFinal = suffix.replace(" ","%20")
+      var urlFinal = args.replace(" ","%20")
       request('https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=5&num=5&hl=fr&prettyPrint=true&source=gcsc&gss=.com&sig=f9d319213db9a87438e3102cff9a2ec9&cx=009653229415439608404:1m_ttrdetu8&q='+urlFinal+'&cse_tok=ABPF6Hha94XrtAEY088JhVEcmfw3yTuagQ:1525555164946&googlehost=www.google.com', function (error, response, body)
       {
         msg.channel.send('``` Red Banner is bad link, "no image Available" is for no streaming ```')
